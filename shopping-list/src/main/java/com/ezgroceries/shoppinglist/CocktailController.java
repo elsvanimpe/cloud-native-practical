@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -49,9 +50,34 @@ Part 2
         }
     }
 
-    private ShoppingListResource createShoppingList(String name){
-        return new ShoppingListResource(UUID.randomUUID(),name);
+    private ShoppingListResource createShoppingList(String name) {
+        return new ShoppingListResource(UUID.randomUUID(), name);
     }
-    //test
 
+
+
+    /* Part 3 - add cocktails to list */
+    @PostMapping(value = "/shopping-lists/{shoppingListId}/cocktails", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<List<CocktailId>> create(@PathVariable UUID shoppingListId, @RequestBody List<CocktailResource> cocktailResourceList ) {
+
+        List<CocktailId> cocktailIdList = new ArrayList<>();
+
+        for (CocktailResource cocktail:cocktailResourceList){
+            CocktailId  cocktailId = new CocktailId(AddToShoppingList(cocktail,shoppingListId));
+            cocktailIdList.add(cocktailId);
+        }
+
+        if (cocktailIdList != null)
+        {
+            return new ResponseEntity<>(cocktailIdList,HttpStatus.CREATED);
+        }
+        else {
+            return new ResponseEntity(HttpStatus.CONFLICT);
+
+        }
+    }
+
+    private UUID AddToShoppingList(CocktailResource cocktailResource, UUID shoppingList){
+        return cocktailResource.getCocktailId();
+    }
 }
