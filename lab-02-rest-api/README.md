@@ -130,7 +130,7 @@ Response, only needs to contain the cocktailId attributes
 ]
 ```
 
-### Get a Shopping List
+
 
 This will provide the main (currently still very simple) functionality of our API, 
 it will return a distinct set of ingredients derived from all the cocktails that have been added to this shopping list.

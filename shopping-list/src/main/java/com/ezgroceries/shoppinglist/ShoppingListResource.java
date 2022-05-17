@@ -1,8 +1,29 @@
 package com.ezgroceries.shoppinglist;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class ShoppingListResource {
+
+    private UUID shoppingListId;
+    private String name;
+    private List<CocktailId> cocktails = new ArrayList<>();
+
+    public ShoppingListResource(){
+
+    }
+    public ShoppingListResource(UUID shoppingListId, String name) {
+        this.shoppingListId = shoppingListId;
+        this.name = name;
+    }
+    public ShoppingListResource(UUID shoppingListId, String name, List<CocktailId> cocktails) {
+        this.shoppingListId = shoppingListId;
+        this.name = name;
+        this.cocktails = cocktails;
+    }
+
+
     public UUID getShoppingListId() {
         return shoppingListId;
     }
@@ -11,33 +32,22 @@ public class ShoppingListResource {
         this.shoppingListId = shoppingListId;
     }
 
-    private UUID shoppingListId;
-
-    public String getShoppingListName() {
-        return shoppingListName;
+    public String getName() {
+        return name;
     }
 
-    public void setShoppingListName(String shoppingListName) {
-        this.shoppingListName = shoppingListName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    private String shoppingListName;
-
-    /* No args constructor */
-    public ShoppingListResource() {
-
+    public List<CocktailId> getCocktails() {
+        return cocktails;
     }
 
-    /* All args constructor */
-    public ShoppingListResource(UUID shoppingListId, String shoppingListName) {
-
-        this.shoppingListId = shoppingListId;
-        this.shoppingListName = shoppingListName;
-
+    public void setCocktails(List<CocktailId> cocktails) {
+        this.cocktails = cocktails;
     }
 }
-
-
 
 
 
