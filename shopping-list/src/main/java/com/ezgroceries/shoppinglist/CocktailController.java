@@ -38,15 +38,11 @@ public class CocktailController {
     @PostMapping(value = "/shopping-lists", consumes = "application/json", produces = "application/json")
     public ResponseEntity <List<ShoppingListResource>> create(@RequestBody List<ShoppingListResource> shoppingListResources) throws JsonParseException {
         System.out.println("Part 2");
-
         List<ShoppingListResource> shoppingListResourceList = new ArrayList<>();
         for (ShoppingListResource shoppingListResource2 : shoppingListResources) {
             shoppingListResource2.setShoppingListId(UUID.randomUUID());
             shoppinglists.put(shoppingListResource2.getShoppingListId(), shoppingListResource2);
-            System.out.println(shoppingListResource2.getName());
             shoppingListResourceList.add(shoppingListResource2);
-
-
         }
         return new ResponseEntity<>(shoppingListResourceList, HttpStatus.CREATED);
     }
@@ -81,20 +77,7 @@ public class CocktailController {
 
         System.out.println("Part 4");
         ShoppingListResource shoppingListResource = shoppinglists.get(shoppingListId);
-        List<CocktailId> cocktailIdList = shoppingListResource.getCocktails();
-        List<CocktailResource> cocktailResources = getDummyResources();
-
-        ShoppingListOut shoppingListOut = new ShoppingListOut(shoppingListId);
-        shoppingListOut.setShoppingListId(shoppingListResource.getShoppingListId());
-        shoppingListOut.setName(shoppingListResource.getName());
-        for (CocktailId cocktailId :cocktailIdList){
-            for(CocktailResource cocktailResource : cocktailResources)
-            {
-                if (cocktailResource.getCocktailId().equals(cocktailId.getCocktailId())) {
-                    shoppingListOut.setShoppingListIngredientList(cocktailResource.getIngredients());
-                }
-            }
-        }
+        ShoppingListOut shoppingListOut = LoopThroughCocktails(shoppingListResource);
         return new ResponseEntity<>(shoppingListOut,HttpStatus.OK);
     }
     /* Part 5 - get all shopping lists */
@@ -104,34 +87,38 @@ public class CocktailController {
         System.out.println("Part 5");
         Set<UUID> keys = shoppinglists.keySet();
         List<ShoppingListOut> shoppingListOuts = new ArrayList<>();
-        ShoppingListOut shoppingListOut = new ShoppingListOut();
-        List<CocktailResource> cocktailResources = getDummyResources();
 
         for(int j=0;j<shoppinglists.size();j++){
             UUID key = (UUID) keys.toArray()[j];
             System.out.println("key > " + key + "  : value = " + shoppinglists.get(key));
             ShoppingListResource shoppingListResource = shoppinglists.get(key);
-            List<CocktailId> cocktailIdList = shoppingListResource.getCocktails();
-            shoppingListOut.setShoppingListId(shoppingListResource.getShoppingListId());
-            shoppingListOut.setName(shoppingListResource.getName());
-            for (CocktailId cocktailId :cocktailIdList){
-                System.out.println("in loop1");
-                System.out.println(cocktailId.getCocktailId());
-                for(CocktailResource cocktailResource : cocktailResources)
-                {
-                    System.out.println("in loop2");
-                    System.out.println(cocktailResource.getCocktailId());
-                    System.out.println(cocktailId.getCocktailId());
-                    if (cocktailResource.getCocktailId().equals(cocktailId.getCocktailId())) {
-                        System.out.println("in if");
-                        System.out.println(cocktailResource.getCocktailId());
-                        System.out.println(cocktailResource.getIngredients());
-                        shoppingListOut.setShoppingListIngredientList(cocktailResource.getIngredients());
-                    }
-                }
-                shoppingListOuts.add(shoppingListOut);
-            }
+            ShoppingListOut shoppingListOut = LoopThroughCocktails(shoppingListResource);
+            shoppingListOuts.add(shoppingListOut);
         }
         return new ResponseEntity<>(shoppingListOuts,HttpStatus.OK);
+    }
+
+    private ShoppingListOut LoopThroughCocktails(ShoppingListResource shoppingListResource){
+
+        List<String> shoppingListIngredients = new ArrayList<>();
+        List<CocktailResource> cocktailResources = getDummyResources();
+        List<CocktailId> cocktailIdList = shoppingListResource.getCocktails();
+        ShoppingListOut shoppingListOut = new ShoppingListOut();
+        shoppingListOut.setShoppingListId(shoppingListResource.getShoppingListId());
+        shoppingListOut.setName(shoppingListResource.getName());
+        shoppingListIngredients.clear();
+        for (CocktailId cocktailId :cocktailIdList){
+            for(CocktailResource cocktailResource : cocktailResources)
+            {
+                if (cocktailResource.getCocktailId().equals(cocktailId.getCocktailId())) {
+                    for(String ingredient : cocktailResource.getIngredients())
+                    {
+                        shoppingListIngredients.add(ingredient);
+                    }
+                }
+            }
+            shoppingListOut.setShoppingListIngredientList(shoppingListIngredients);
+        }
+        return shoppingListOut;
     }
 }
