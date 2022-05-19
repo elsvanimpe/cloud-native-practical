@@ -1,5 +1,9 @@
-package com.ezgroceries.shoppinglist;
+package com.ezgroceries.shoppinglist.Controllers;
 
+import com.ezgroceries.shoppinglist.Controllers.Resource.CocktailId;
+import com.ezgroceries.shoppinglist.CocktailResource;
+import com.ezgroceries.shoppinglist.ShoppingListOut;
+import com.ezgroceries.shoppinglist.ShoppingListResource;
 import com.fasterxml.jackson.core.JsonParseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +13,7 @@ import java.util.*;
 
 @RestController
 public class CocktailController {
-    Map<UUID,ShoppingListResource> shoppinglists = new HashMap<UUID,ShoppingListResource>();
+    Map<UUID, ShoppingListResource> shoppinglists = new HashMap<UUID,ShoppingListResource>();
     /* part 1 get cocktails */
     @GetMapping(value = "/cocktails", produces = "application/json")
     public ResponseEntity<List<CocktailResource>> get(@RequestParam String search) {
