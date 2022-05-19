@@ -1,4 +1,4 @@
-package com.ezgroceries.shoppinglist;
+package com.ezgroceries.shoppinglist.Controllers.Resource;
 
 import com.ezgroceries.shoppinglist.Controllers.Resource.CocktailId;
 
