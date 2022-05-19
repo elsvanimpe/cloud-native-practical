@@ -1,9 +1,9 @@
 package com.ezgroceries.shoppinglist.Controllers;
 
-import com.ezgroceries.shoppinglist.Controllers.Resource.CocktailId;
-import com.ezgroceries.shoppinglist.Controllers.Resource.CocktailResource;
-import com.ezgroceries.shoppinglist.Controllers.Resource.ShoppingListOut;
-import com.ezgroceries.shoppinglist.Controllers.Resource.ShoppingListResource;
+import com.ezgroceries.shoppinglist.Controllers.ResourceCocktail.CocktailId;
+import com.ezgroceries.shoppinglist.Controllers.ResourceCocktail.CocktailResource;
+import com.ezgroceries.shoppinglist.Controllers.ResourceShopping.ShoppingListOut;
+import com.ezgroceries.shoppinglist.Controllers.ResourceShopping.ShoppingListResource;
 import com.fasterxml.jackson.core.JsonParseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

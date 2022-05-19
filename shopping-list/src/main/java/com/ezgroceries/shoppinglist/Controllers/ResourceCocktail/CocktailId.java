@@ -1,4 +1,4 @@
-package com.ezgroceries.shoppinglist.Controllers.Resource;
+package com.ezgroceries.shoppinglist.Controllers.ResourceCocktail;
 
 import java.util.UUID;
 

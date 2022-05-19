@@ -1,10 +1,4 @@
-package com.ezgroceries.shoppinglist.Controllers.Resource;
-
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+package com.ezgroceries.shoppinglist.Controllers.ResourceCocktail;
 
 import java.util.*;
 
