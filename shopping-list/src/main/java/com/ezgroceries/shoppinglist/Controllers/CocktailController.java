@@ -1,8 +1,8 @@
 package com.ezgroceries.shoppinglist.Controllers;
 
 
-import com.ezgroceries.shoppinglist.Controllers.ResourceCocktail.CocktailResource;
-import com.ezgroceries.shoppinglist.Controllers.ResourceShopping.ShoppingListResource;
+import com.ezgroceries.shoppinglist.Controllers.ResourceCocktail.*;
+import com.ezgroceries.shoppinglist.Controllers.ResourceShopping.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.ezgroceries.shoppinglist.Services.*;
@@ -17,7 +17,7 @@ public class CocktailController {
     public ResponseEntity<List<CocktailResource>> get(@RequestParam String search) {
         System.out.println("Part 1");
 
-        return ResponseEntity.ok((getDummyResources()));
+        return ResponseEntity.ok((Functions.getDummyResources()));
     }
 
 

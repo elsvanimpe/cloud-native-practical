@@ -1,24 +1,20 @@
 package com.ezgroceries.shoppinglist.Controllers;
-
-import com.ezgroceries.shoppinglist.Controllers.ResourceCocktail.CocktailId;
-import com.ezgroceries.shoppinglist.Controllers.ResourceCocktail.CocktailResource;
-import com.ezgroceries.shoppinglist.Controllers.ResourceShopping.ShoppingListOut;
-import com.ezgroceries.shoppinglist.Controllers.ResourceShopping.ShoppingListResource;
+import com.ezgroceries.shoppinglist.Controllers.ResourceCocktail.*;
+import com.ezgroceries.shoppinglist.Controllers.ResourceShopping.*;
+import com.ezgroceries.shoppinglist.Services.*;
 import com.fasterxml.jackson.core.JsonParseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.ezgroceries.shoppinglist.Services.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+
+import java.util.*;
 
 @RestController
 public class ShoppingController {
+    Map<UUID, ShoppingListResource> shoppinglists = new HashMap<UUID,ShoppingListResource>();
     /* part 2 create shopping list */
-    @PostMapping(value = "/shopping-lists", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "shopping-lists", consumes = "application/json", produces = "application/json")
     public ResponseEntity<List<ShoppingListResource>> create(@RequestBody List<ShoppingListResource> shoppingListResources) throws JsonParseException {
         System.out.println("Part 2");
         List<ShoppingListResource> shoppingListResourceList = new ArrayList<>();
@@ -60,7 +56,7 @@ public class ShoppingController {
 
         System.out.println("Part 4");
         ShoppingListResource shoppingListResource = shoppinglists.get(shoppingListId);
-        ShoppingListOut shoppingListOut = LoopThroughCocktails(shoppingListResource);
+        ShoppingListOut shoppingListOut = Functions.LoopThroughCocktails(shoppingListResource);
         return new ResponseEntity<>(shoppingListOut,HttpStatus.OK);
     }
     /* Part 5 - get all shopping lists */
@@ -75,33 +71,11 @@ public class ShoppingController {
             UUID key = (UUID) keys.toArray()[j];
             System.out.println("key > " + key + "  : value = " + shoppinglists.get(key));
             ShoppingListResource shoppingListResource = shoppinglists.get(key);
-            ShoppingListOut shoppingListOut = LoopThroughCocktails(shoppingListResource);
+            ShoppingListOut shoppingListOut = Functions.LoopThroughCocktails(shoppingListResource);
             shoppingListOuts.add(shoppingListOut);
         }
         return new ResponseEntity<>(shoppingListOuts,HttpStatus.OK);
     }
 
-    private ShoppingListOut LoopThroughCocktails(ShoppingListResource shoppingListResource){
 
-        List<String> shoppingListIngredients = new ArrayList<>();
-        List<CocktailResource> cocktailResources = getDummyResources();
-        List<CocktailId> cocktailIdList = shoppingListResource.getCocktails();
-        ShoppingListOut shoppingListOut = new ShoppingListOut();
-        shoppingListOut.setShoppingListId(shoppingListResource.getShoppingListId());
-        shoppingListOut.setName(shoppingListResource.getName());
-        shoppingListIngredients.clear();
-        for (CocktailId cocktailId :cocktailIdList){
-            for(CocktailResource cocktailResource : cocktailResources)
-            {
-                if (cocktailResource.getCocktailId().equals(cocktailId.getCocktailId())) {
-                    for(String ingredient : cocktailResource.getIngredients())
-                    {
-                        shoppingListIngredients.add(ingredient);
-                    }
-                }
-            }
-            shoppingListOut.setShoppingListIngredientList(shoppingListIngredients);
-        }
-        return shoppingListOut;
-    }
 }
