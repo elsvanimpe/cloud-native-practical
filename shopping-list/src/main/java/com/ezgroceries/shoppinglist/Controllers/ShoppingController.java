@@ -14,7 +14,7 @@ import java.util.*;
 public class ShoppingController {
     Map<UUID, ShoppingListResource> shoppinglists = new HashMap<UUID,ShoppingListResource>();
     /* part 2 create shopping list */
-    @PostMapping(value = "shopping-lists", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/shopping-lists", consumes = "application/json", produces = "application/json")
     public ResponseEntity<List<ShoppingListResource>> create(@RequestBody List<ShoppingListResource> shoppingListResources) throws JsonParseException {
         System.out.println("Part 2");
         List<ShoppingListResource> shoppingListResourceList = new ArrayList<>();

@@ -28,6 +28,9 @@ public class CocktailResource {
         this.ingredients = ingredients;
     }
 
+    public CocktailResource(String idDrink, String strDrink, String strGlass, String strInstructions, String strDrinkThumb, List<String> ingredientsList) {
+    }
+
     public UUID getCocktailId() {
         return cocktailId;
     }

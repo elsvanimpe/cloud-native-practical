@@ -1,4 +1,4 @@
-package com.ezgroceries.shoppinglist.Database;
+package com.ezgroceries.shoppinglist.Databases;
 
 import java.util.ArrayList;
 import java.util.List;
