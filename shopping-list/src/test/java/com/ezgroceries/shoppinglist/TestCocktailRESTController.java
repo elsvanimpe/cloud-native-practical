@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class TestCocktailRESTController {
-
+/*
     @Autowired
     private MockMvc mvc;
 
@@ -52,5 +52,5 @@ public class TestCocktailRESTController {
             throw new RuntimeException(e);
         }
     }
-
+*/
 }

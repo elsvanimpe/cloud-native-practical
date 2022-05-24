@@ -11,7 +11,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+
 public class Functions {
+    /* lab 02 function
    public static List<CocktailResource> getDummyResources() {
         return Arrays.asList(
                 new CocktailResource(
@@ -48,6 +50,6 @@ public class Functions {
             shoppingListOut.setShoppingListIngredientList(shoppingListIngredients);
         }
         return shoppingListOut;
-    }
+    }*/
 
 }

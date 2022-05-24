@@ -11,14 +11,14 @@ import java.util.*;
 
 @RestController
 public class CocktailController {
-    Map<UUID, ShoppingListResource> shoppinglists = new HashMap<UUID,ShoppingListResource>();
-    /* part 1 get cocktails */
+    /*Map<UUID, ShoppingListResource> shoppinglists = new HashMap<UUID,ShoppingListResource>();
+    // part 1 get cocktails
     @GetMapping(value = "/cocktails", produces = "application/json")
     public ResponseEntity<List<CocktailResource>> get(@RequestParam String search) {
         System.out.println("Part 1");
 
-        return ResponseEntity.ok((Functions.getDummyResources()));
-    }
+       return ResponseEntity.ok((Functions.getDummyResources()));
+    }*/
 
 
 }

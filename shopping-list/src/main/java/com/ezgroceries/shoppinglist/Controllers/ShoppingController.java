@@ -12,8 +12,8 @@ import java.util.*;
 
 @RestController
 public class ShoppingController {
-    Map<UUID, ShoppingListResource> shoppinglists = new HashMap<UUID,ShoppingListResource>();
-    /* part 2 create shopping list */
+/*    Map<UUID, ShoppingListResource> shoppinglists = new HashMap<UUID,ShoppingListResource>();
+    // part 2 create shopping list
     @PostMapping(value = "/shopping-lists", consumes = "application/json", produces = "application/json")
     public ResponseEntity<List<ShoppingListResource>> create(@RequestBody List<ShoppingListResource> shoppingListResources) throws JsonParseException {
         System.out.println("Part 2");
@@ -26,7 +26,7 @@ public class ShoppingController {
         return new ResponseEntity<>(shoppingListResourceList, HttpStatus.CREATED);
     }
 
-    /* Part 3 - add cocktails to list */
+    // Part 3 - add cocktails to list
     @PostMapping(value = "/shopping-lists/{shoppingListId}/cocktails", consumes = "application/json", produces = "application/json")
     public ResponseEntity<List<CocktailId>> create(@PathVariable UUID shoppingListId, @RequestBody List<CocktailResource> cocktailResourceList ) {
 
@@ -50,7 +50,7 @@ public class ShoppingController {
         }
     }
 
-    /* Part 4 - get shopping list */
+    // Part 4 - get shopping list
     @GetMapping(value = "/shopping-lists/{shoppingListId}", produces = "application/json")
     public ResponseEntity<ShoppingListOut> get(@PathVariable UUID shoppingListId) {
 
@@ -59,7 +59,7 @@ public class ShoppingController {
         ShoppingListOut shoppingListOut = Functions.LoopThroughCocktails(shoppingListResource);
         return new ResponseEntity<>(shoppingListOut,HttpStatus.OK);
     }
-    /* Part 5 - get all shopping lists */
+    // Part 5 - get all shopping lists
     @GetMapping(value = "/shopping-listsall", produces = "application/json")
     public ResponseEntity<List<ShoppingListOut>> get() {
 
@@ -77,5 +77,5 @@ public class ShoppingController {
         return new ResponseEntity<>(shoppingListOuts,HttpStatus.OK);
     }
 
-
+*/
 }

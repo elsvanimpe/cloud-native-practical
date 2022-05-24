@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.ezgroceries.shoppinglist.Services.*;
 
 import java.util.*;
 
@@ -23,8 +22,8 @@ public class ShoppingControllerLab04 {
     private CocktailDBClient cocktailDBClient;
 
     /* part 2 create shopping list */
-    @PostMapping(value = "/shopping-lists4", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<List<ShoppingListResource>> create(@RequestBody List<ShoppingListResource> shoppingListResources) throws JsonParseException {
+    @PostMapping(value = "/shopping-lists", consumes = "application/json", produces = "application/json")
+    public ResponseEntity <List<ShoppingListResource>> create(@RequestBody List<ShoppingListResource> shoppingListResources) throws JsonParseException {
         System.out.println("Part 2");
         List<ShoppingListResource> shoppingListResourceList = new ArrayList<>();
         for (ShoppingListResource shoppingListResource2 : shoppingListResources) {
@@ -36,7 +35,7 @@ public class ShoppingControllerLab04 {
     }
 
     /* Part 3 - add cocktails to list */
-    @PostMapping(value = "/shopping-lists4/{shoppingListId}/cocktails", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/shopping-lists/{shoppingListId}/cocktails", consumes = "application/json", produces = "application/json")
     public ResponseEntity<List<CocktailId>> create(@PathVariable UUID shoppingListId, @RequestBody List<CocktailResource> cocktailResourceList ) {
 
         System.out.println("Part 3");
@@ -60,16 +59,16 @@ public class ShoppingControllerLab04 {
     }
 
     /* Part 4 - get shopping list */
-    @GetMapping(value = "/shopping-lists4/{shoppingListId}", produces = "application/json")
+    @GetMapping(value = "/shopping-lists/{shoppingListId}", produces = "application/json")
     public ResponseEntity<ShoppingListOut> get(@PathVariable UUID shoppingListId) {
 
         System.out.println("Part 4");
         ShoppingListResource shoppingListResource = shoppinglists.get(shoppingListId);
-        ShoppingListOut shoppingListOut = LoopThroughCocktails4(shoppingListResource);
+        ShoppingListOut shoppingListOut = LoopThroughCocktails(shoppingListResource);
         return new ResponseEntity<>(shoppingListOut,HttpStatus.OK);
     }
     /* Part 5 - get all shopping lists */
-    @GetMapping(value = "/shopping-listsall4", produces = "application/json")
+    @GetMapping(value = "/shopping-listsall", produces = "application/json")
     public ResponseEntity<List<ShoppingListOut>> get() {
 
         System.out.println("Part 5");
@@ -80,18 +79,18 @@ public class ShoppingControllerLab04 {
             UUID key = (UUID) keys.toArray()[j];
             System.out.println("key > " + key + "  : value = " + shoppinglists.get(key));
             ShoppingListResource shoppingListResource = shoppinglists.get(key);
-            ShoppingListOut shoppingListOut = LoopThroughCocktails4(shoppingListResource);
+            ShoppingListOut shoppingListOut = LoopThroughCocktails(shoppingListResource);
             shoppingListOuts.add(shoppingListOut);
         }
         return new ResponseEntity<>(shoppingListOuts,HttpStatus.OK);
     }
 
-    private ShoppingListOut LoopThroughCocktails4(ShoppingListResource shoppingListResource){
+    private ShoppingListOut LoopThroughCocktails(ShoppingListResource shoppingListResource){
 
 
         List<String> shoppingListIngredients = new ArrayList<>();
         List<CocktailResource> cocktailResourceList = new ArrayList<CocktailResource>();
-        CocktailDBResponse response = cocktailDBClient.searchAllCocktails();
+        CocktailDBResponse response = cocktailDBClient.searchCocktails("Russian");
         for(int i=0;i <response.getDrinks().size();i++){
             CocktailResource singleCocktailResource = new CocktailResource(
                     response.getDrinks().get(i).getIdDrink(),
