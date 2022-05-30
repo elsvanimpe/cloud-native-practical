@@ -10,7 +10,7 @@ When developing locally we'll run postgres through a container container, this c
 
 ```
 podman run -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres
-```
+```podman run -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres
 
 Example successful output:
 ```
