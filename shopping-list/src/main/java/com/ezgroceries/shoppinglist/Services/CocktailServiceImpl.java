@@ -15,11 +15,11 @@ public class CocktailServiceImpl implements CocktailService {
     //add
     public CocktailEntity addCocktail(CocktailEntity cocktailEntity)
     {
-        return CocktailRepository.save(cocktailEntity);
+        return cocktailRepository.save(cocktailEntity);
     }
     //read
     public List<CocktailEntity> readCocktail(String name){
-        return CocktailRepository.findByNameContainingIgnoreCase(name);
+        return cocktailRepository.findByNameContainingIgnoreCase(name);
     }
 
 }

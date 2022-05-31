@@ -18,7 +18,6 @@ public class ShoppingListServiceImpl implements ShoppingListService {
     @Autowired
     private ShoppingListRepository shoppingListRepository;
 
-    @Override
     public ShoppingListEntity addShoppingList(ShoppingListEntity shoppingList) {
         return shoppingListRepository.save(shoppingList);
     }
