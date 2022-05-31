@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+@RestController
 public class CocktailControllerLab06 {
-    @RestController
-    public class CocktailController {
+
         Map<UUID, ShoppingListResource> shoppinglists = new HashMap<UUID,ShoppingListResource>();
 
         @Autowired
@@ -41,4 +41,4 @@ public class CocktailControllerLab06 {
         }
 
     }
-}
+
