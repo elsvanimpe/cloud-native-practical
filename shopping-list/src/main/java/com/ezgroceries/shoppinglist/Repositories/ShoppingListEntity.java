@@ -9,6 +9,10 @@ import java.util.*;
 @Entity
 @Table(name = "shopping_list")
 public class ShoppingListEntity {
+    @ManyToMany(fetch = FetchType.EAGER , cascade = CascadeType.PERSIST)
+    @JoinTable(name = "COCKTAIL_SHOPPING_LIST", joinColumns = @JoinColumn(name = "shoppinglistid"),inverseJoinColumns = @JoinColumn(name = "cocktailid"))
+    private List<CocktailEntity> cocktails;
+
     @Column(name="shoppinglistid", nullable = false)
     @Id
     @GeneratedValue

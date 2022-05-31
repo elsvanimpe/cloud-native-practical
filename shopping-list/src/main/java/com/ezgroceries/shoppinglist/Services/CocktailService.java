@@ -5,9 +5,9 @@ import com.ezgroceries.shoppinglist.Repositories.CocktailEntity;
 import java.util.List;
 
 public interface CocktailService {
-    // write cocktail in cocktailtable
-    CocktailEntity saveCocktailEntity(CocktailEntity cocktailEntity);
+    // add cocktail in cocktailtable
+    CocktailEntity addCocktail(CocktailEntity cocktailEntity);
 
     // read a cocktail in  cocktailtable
-    List<CocktailEntity> readCocktails (String name);
+    List<CocktailEntity> readCocktail (String name);
 }

@@ -10,7 +10,7 @@ import java.util.*;
 
 @Data
 @Entity
-@Table(name = "COCKTAIL")
+@Table(name = "cocktail")
 public class CocktailEntity {
     @Column(name="cocktailid", nullable = false)
     @Id

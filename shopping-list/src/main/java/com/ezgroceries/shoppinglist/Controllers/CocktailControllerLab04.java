@@ -9,8 +9,8 @@ import java.util.*;
 
 @RestController
 public class CocktailControllerLab04 {
-        Map<UUID, ShoppingListResource> shoppinglists = new HashMap<UUID,ShoppingListResource>();
-        /* part 1 get cocktails */
+   /*     Map<UUID, ShoppingListResource> shoppinglists = new HashMap<UUID,ShoppingListResource>();
+        // part 1 get cocktails
         @Autowired
         private CocktailDBClient cocktailDBClient;
 
@@ -18,7 +18,7 @@ public class CocktailControllerLab04 {
         public ResponseEntity<CocktailDBResponse> get(@RequestParam String search) {
             System.out.println("Part 1");
             return ResponseEntity.ok((cocktailDBClient.searchCocktails(search)));
-        }
+        }*/
 
     }
 
